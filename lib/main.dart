@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobilellc_task/screens/musiclist/booklist.dart';
+import 'package:mobilellc_task/screens/musiclist/musiclist.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         // primarySwatch: themeColorBlue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: BookCards(),
+      home: MusicCards(),
     );
   }
 }

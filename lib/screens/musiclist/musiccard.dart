@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mobilellc_task/models/book.dart';
+import 'package:mobilellc_task/models/music.dart';
 
 class MusicCard extends StatefulWidget {
   final Results musicInstance;
   final bool musicPlaying;
-  MusicCard(this.musicInstance,this.musicPlaying);
+  // ignore: sort_constructors_first
+  const MusicCard(this.musicInstance,this.musicPlaying);
 
   @override
-  _MusicCardState createState() => new _MusicCardState();
+  _MusicCardState createState() => _MusicCardState();
 }
 
 class _MusicCardState extends State<MusicCard> {
@@ -17,14 +18,16 @@ class _MusicCardState extends State<MusicCard> {
     return Card(
       child: ListView(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
+        // ignore: always_specify_types
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
+            // ignore: always_specify_types
             children: [
               Container(
-                margin: EdgeInsets.only(left:8,right:8),
+                margin: const EdgeInsets.only(left:8,right:8),
                 height: 80,
                 width: 80,
                 decoration: BoxDecoration(
@@ -32,41 +35,44 @@ class _MusicCardState extends State<MusicCard> {
                   image: DecorationImage(
                     fit: BoxFit.fill,
                     image:
-                        NetworkImage("${widget.musicInstance.artworkUrl100}"),
+                        NetworkImage(widget.musicInstance.artworkUrl100),
                   ),
                 ),
               ),
               Container(
                 width:200,
-                margin: EdgeInsets.only(top:10,bottom:10),
+                margin: const EdgeInsets.only(top:10,bottom:10),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  // ignore: always_specify_types
                   children: [
                     Container(
                       child: Text(
-                          "${widget.musicInstance.artistName.toUpperCase()}",
-                          overflow: TextOverflow.ellipsis,
+                          // ignore: unnecessary_string_interpolations
+                          '${widget.musicInstance.artistName.toUpperCase()}',
+                          // overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.start,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold
                           )
                           // style: Theme.of(context).textTheme.bodyText1,
                           ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Container(
                       
                       child: Text(
-                        widget.musicInstance.collectionName==null?"":
-                        "${widget.musicInstance?.collectionName}",
+                        widget.musicInstance.collectionName==null?'':
+                        // ignore: unnecessary_string_interpolations
+                        '${widget.musicInstance?.collectionName}',
                           textAlign: TextAlign.start,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 14,
                             color: Colors.black54,
                             fontWeight: FontWeight.w600,
@@ -76,15 +82,14 @@ class _MusicCardState extends State<MusicCard> {
                   ],
                 ),
               ),
-              widget.musicPlaying?
-              Container(
-                margin: EdgeInsets.all(8),
+              if (widget.musicPlaying) Container(
+                margin: const EdgeInsets.all(8),
                 height: 60,
                 width: 60,
-                child: Image(
+                child: const Image(
                   image: AssetImage('assets/music.gif')),
-              ):Container(
-                margin: EdgeInsets.all(8),
+              ) else Container(
+                margin: const EdgeInsets.all(8),
                 
               ),
               
